@@ -1,54 +1,106 @@
-Efficient Image Classification: Accuracy vs. Inference Speed
+# Efficient Image Classification: Accuracy vs. Inference Speed
 
-Overview
+A reproducible, CPU-based **transfer learning benchmark** comparing MobileNetV3-Small and ResNet18 on the **Oxford-IIIT Pet** image classification dataset. The project examines the trade-off between predictive accuracy, inference latency, and model storage size.
 
-This project investigates the trade-off between classification accuracy and computational efficiency using PyTorch.
+> **Study scope:** This is an **initial, single-epoch experiment**, not a comprehensive model ranking. The reported measurements are specific to the experimental setup and CPU used.
 
-The goal is to compare two convolutional neural network architectures, MobileNetV3-Small and ResNet18, on an image classification task, focusing on prediction accuracy, CPU inference speed, and model size.
+## Research question
 
-Research Question
+How does a lightweight convolutional neural network compare with a larger architecture in terms of classification accuracy, CPU inference time, and model size when both use frozen ImageNet-pretrained feature extractors?
 
-How does a lightweight image classification model compare with a larger model in terms of accuracy, inference speed, and model size?
+## Results
 
-Dataset
+Both models were trained for **1 epoch**, using the same 2,944-image training split and 736-image validation split, and evaluated on the separate official **3,669-image test set**.
 
-The project will use the "Oxford-IIIT Pet Dataset" (https://www.robots.ox.ac.uk/~vgg/data/pets/), which contains images of 37 cat and dog breeds.
+| Metric | MobileNetV3-Small | ResNet18 |
+| :--- | ---: | ---: |
+| Best validation accuracy | 79.35% | 85.60% |
+| **Test accuracy** | **76.75%** | **83.86%** |
+| **CPU inference latency** (ms/image) | **12.81** | **65.21** |
+| **Checkpoint size** (MiB) | **3.75** | **42.78** |
+| Training epochs | 1 | 1 |
 
-Models
+![Comparison of test accuracy, CPU inference latency, and checkpoint size](results/model_comparison.png)
 
-- MobileNetV3-Small: A lightweight convolutional neural network designed for computational efficiency.
-- ResNet18: A widely used convolutional neural network that will serve as a comparison model.
+**Initial observation:** In this run, MobileNetV3-Small had approximately **5.1x lower CPU inference latency** and a much smaller checkpoint, while ResNet18 achieved **7.11 percentage points higher test accuracy**. This illustrates an accuracy-efficiency trade-off *for this specific setup*; it does not establish a general ranking of the architectures.
 
-Pre-trained weights and transfer learning will be used to adapt both models to the classification task.
+Detailed output: [experimental report](results/summary.md) · [CSV results](results/comparison.csv).
 
-Evaluation Metrics
+## Dataset and evaluation protocol
 
-The models will be evaluated using:
+- **Dataset:** [Oxford-IIIT Pet](https://www.robots.ox.ac.uk/~vgg/data/pets/), with 37 cat and dog breed categories.
+- **Train/validation:** 3,680 images from the official `trainval` partition, split into 2,944 training and 736 validation images using stratified sampling (`random_state=42`). The split indices are saved in `splits/`.
+- **Test:** The separate official partition of 3,669 images. It is not used for training or choosing the best checkpoint.
+- **Training transforms:** Random resized crop to 224 × 224, random horizontal flip, tensor conversion, and ImageNet normalization.
+- **Validation/test transforms:** Resize to 256, center crop to 224 × 224, tensor conversion, and ImageNet normalization.
+- **Transfer learning:** Initialize both networks using ImageNet-pretrained weights, freeze their existing feature extractors, and train a newly initialized 37-class linear classifier.
+- **Optimization:** Adam (`lr=0.001`), cross-entropy loss, batch size 16, one epoch. Checkpoints are selected by validation accuracy.
+- **Latency:** Median of 30 single-image forward passes on CPU, following 5 warm-up passes. Input preprocessing and disk I/O are excluded. Measurements are hardware-dependent.
+- **Model size:** On-disk size of each saved PyTorch `state_dict` checkpoint (MiB), rather than the size of the original pretrained download.
 
-- Classification Accuracy: Performance on the test dataset.
-- CPU Inference Time: Time required to process input images on the same CPU.
-- Model Size: Storage size of the trained model weights.
+## Run the project
 
-Tools and Technologies
+The following commands are for **Windows PowerShell**, executed from the repository root. Python 3.13 (64-bit) was used for the recorded experiment.
 
-- Python
-- PyTorch
-- Torchvision
-- NumPy
-- Matplotlib
-- Scikit-learn
+```powershell
+# Create a local virtual environment
+python -m venv .venv
 
-Project Status
+# Install dependencies
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-In Progress
+# Download and check the dataset (first run only)
+.\.venv\Scripts\python.exe src\data.py
 
-The project is currently under development. Dataset preparation, model training, performance benchmarking, and result analysis will be added incrementally.
+# Optional: regenerate the saved, reproducible train/validation split
+.\.venv\Scripts\python.exe src\split_data.py
 
+# Check the training/validation loaders
+.\.venv\Scripts\python.exe src\dataloaders.py
 
-## Preliminary Benchmark Results
+# Run the experiment on CPU (both models)
+.\.venv\Scripts\python.exe src\train.py --epochs 1
+```
 
-A preliminary comparison of MobileNetV3-Small and ResNet18 was conducted using transfer learning on the Oxford-IIIT Pet dataset.
+The training command writes `results/comparison.csv`, `results/model_comparison.png`, and `results/summary.md`. It also saves model checkpoints locally under `checkpoints/`. The pretrained model weights and dataset may be downloaded automatically on first use.
 
-The experiment evaluates classification accuracy, CPU inference latency, and model size.
+**Note:** The benchmark re-runs training and overwrites the generated result files. CPU latency values may differ on another machine or between runs.
 
-The initial results and experimental limitations are documented in the [benchmark report](results/summary.md).
+## Repository structure
+
+```text
+.
+├── src/
+│   ├── data.py             # Dataset download and initial inspection
+│   ├── split_data.py       # Reproducible, stratified split
+│   ├── dataloaders.py      # Training/validation transforms and loaders
+│   ├── models.py           # MobileNetV3-Small transfer learning model
+│   └── train.py            # Training, test evaluation, CPU benchmark, reporting
+├── splits/
+│   ├── train_indices.json
+│   └── val_indices.json
+├── results/
+│   ├── comparison.csv
+│   ├── model_comparison.png
+│   └── summary.md
+├── requirements.txt
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+The downloaded `data/`, local `.venv/`, and saved `checkpoints/` directories are excluded from version control.
+
+## Limitations and next steps
+
+- **One epoch and one fixed random seed:** More epochs and repeated runs are needed for stronger, more stable conclusions.
+- **Frozen backbones:** This benchmark tests linear-head transfer learning, not full fine-tuning or training from scratch.
+- **CPU-only latency:** The measurements do not establish performance on mobile phones or other edge devices.
+- **Limited timing protocol:** The reported latency excludes preprocessing and uses one example image. An extended benchmark should test more images, repeated sessions, and multiple devices.
+- **Test-set discipline:** Any future experiment variants should be chosen using validation data, rather than repeatedly optimizing choices on the reported test set.
+
+Potential extensions include repeated-seed experiments, longer training budgets, and evaluations on actual resource-constrained devices.
+
+## License and acknowledgments
+
+Project source code is released under the [MIT License](LICENSE). The Oxford-IIIT Pet dataset and pretrained model weights are third-party resources governed by their own terms and licenses. Their inclusion in the workflow does not place them under this repository's MIT License.
