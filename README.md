@@ -43,3 +43,12 @@ Project Status
 In Progress
 
 The project is currently under development. Dataset preparation, model training, performance benchmarking, and result analysis will be added incrementally.
+
+
+## Preliminary Benchmark Results
+
+A preliminary comparison of MobileNetV3-Small and ResNet18 was conducted using transfer learning on the Oxford-IIIT Pet dataset.
+
+The experiment evaluates classification accuracy, CPU inference latency, and model size.
+
+The initial results and experimental limitations are documented in the [benchmark report](results/summary.md).
