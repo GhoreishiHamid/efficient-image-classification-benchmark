@@ -1,0 +1,75 @@
+model,class_index,class_name,test_support,precision,recall,f1_score
+mobilenet_v3_small,0,Abyssinian,98,0.5855,0.9082,0.712
+mobilenet_v3_small,1,American Bulldog,100,0.6418,0.86,0.735
+mobilenet_v3_small,2,American Pit Bull Terrier,100,0.7447,0.35,0.4762
+mobilenet_v3_small,3,Basset Hound,100,0.8478,0.78,0.8125
+mobilenet_v3_small,4,Beagle,100,0.6508,0.82,0.7257
+mobilenet_v3_small,5,Bengal,100,0.7063,0.89,0.7876
+mobilenet_v3_small,6,Birman,100,0.538,0.92,0.679
+mobilenet_v3_small,7,Bombay,88,0.6613,0.9318,0.7736
+mobilenet_v3_small,8,Boxer,99,0.8873,0.6364,0.7412
+mobilenet_v3_small,9,British Shorthair,100,0.6477,0.57,0.6064
+mobilenet_v3_small,10,Chihuahua,100,0.7262,0.61,0.663
+mobilenet_v3_small,11,Egyptian Mau,97,0.7757,0.8557,0.8137
+mobilenet_v3_small,12,English Cocker Spaniel,100,0.7736,0.82,0.7961
+mobilenet_v3_small,13,English Setter,100,0.9259,0.75,0.8287
+mobilenet_v3_small,14,German Shorthaired,100,0.5917,1.0,0.7435
+mobilenet_v3_small,15,Great Pyrenees,100,0.9524,0.8,0.8696
+mobilenet_v3_small,16,Havanese,100,0.9118,0.62,0.7381
+mobilenet_v3_small,17,Japanese Chin,100,0.9756,0.8,0.8791
+mobilenet_v3_small,18,Keeshond,99,0.9592,0.9495,0.9543
+mobilenet_v3_small,19,Leonberger,100,0.9135,0.95,0.9314
+mobilenet_v3_small,20,Maine Coon,100,0.6923,0.54,0.6067
+mobilenet_v3_small,21,Miniature Pinscher,100,0.908,0.79,0.8449
+mobilenet_v3_small,22,Newfoundland,100,0.8889,0.96,0.9231
+mobilenet_v3_small,23,Persian,100,0.98,0.49,0.6533
+mobilenet_v3_small,24,Pomeranian,100,0.9101,0.81,0.8571
+mobilenet_v3_small,25,Pug,100,0.8348,0.96,0.893
+mobilenet_v3_small,26,Ragdoll,100,0.5962,0.62,0.6078
+mobilenet_v3_small,27,Russian Blue,100,0.9091,0.4,0.5556
+mobilenet_v3_small,28,Saint Bernard,100,0.7607,0.89,0.8203
+mobilenet_v3_small,29,Samoyed,100,0.7388,0.99,0.8462
+mobilenet_v3_small,30,Scottish Terrier,99,0.9277,0.7778,0.8462
+mobilenet_v3_small,31,Shiba Inu,100,0.754,0.95,0.8407
+mobilenet_v3_small,32,Siamese,100,0.9231,0.48,0.6316
+mobilenet_v3_small,33,Sphynx,100,0.9315,0.68,0.7861
+mobilenet_v3_small,34,Staffordshire Bull Terrier,89,0.7317,0.3371,0.4615
+mobilenet_v3_small,35,Wheaten Terrier,100,0.6818,0.9,0.7759
+mobilenet_v3_small,36,Yorkshire Terrier,100,0.8033,0.98,0.8829
+resnet18,0,Abyssinian,98,0.9444,0.3469,0.5075
+resnet18,1,American Bulldog,100,0.8061,0.79,0.798
+resnet18,2,American Pit Bull Terrier,100,0.6667,0.22,0.3308
+resnet18,3,Basset Hound,100,0.974,0.75,0.8475
+resnet18,4,Beagle,100,0.7385,0.96,0.8348
+resnet18,5,Bengal,100,0.5492,0.67,0.6036
+resnet18,6,Birman,100,0.8125,0.65,0.7222
+resnet18,7,Bombay,88,0.82,0.9318,0.8723
+resnet18,8,Boxer,99,0.8558,0.899,0.8768
+resnet18,9,British Shorthair,100,0.5123,0.83,0.6336
+resnet18,10,Chihuahua,100,0.8889,0.88,0.8844
+resnet18,11,Egyptian Mau,97,0.6593,0.9175,0.7672
+resnet18,12,English Cocker Spaniel,100,0.9753,0.79,0.8729
+resnet18,13,English Setter,100,0.8348,0.96,0.893
+resnet18,14,German Shorthaired,100,0.8879,0.95,0.9179
+resnet18,15,Great Pyrenees,100,0.96,0.96,0.96
+resnet18,16,Havanese,100,0.9505,0.96,0.9552
+resnet18,17,Japanese Chin,100,0.9697,0.96,0.9648
+resnet18,18,Keeshond,99,0.97,0.9798,0.9749
+resnet18,19,Leonberger,100,0.9608,0.98,0.9703
+resnet18,20,Maine Coon,100,0.8462,0.66,0.7416
+resnet18,21,Miniature Pinscher,100,0.8972,0.96,0.9275
+resnet18,22,Newfoundland,100,1.0,0.96,0.9796
+resnet18,23,Persian,100,0.7459,0.91,0.8198
+resnet18,24,Pomeranian,100,0.95,0.95,0.95
+resnet18,25,Pug,100,1.0,0.97,0.9848
+resnet18,26,Ragdoll,100,0.7071,0.7,0.7035
+resnet18,27,Russian Blue,100,0.875,0.21,0.3387
+resnet18,28,Saint Bernard,100,0.8909,0.98,0.9333
+resnet18,29,Samoyed,100,0.9167,0.99,0.9519
+resnet18,30,Scottish Terrier,99,0.8829,0.9899,0.9333
+resnet18,31,Shiba Inu,100,0.9697,0.96,0.9648
+resnet18,32,Siamese,100,0.8017,0.93,0.8611
+resnet18,33,Sphynx,100,0.9109,0.92,0.9154
+resnet18,34,Staffordshire Bull Terrier,89,0.4524,0.6404,0.5302
+resnet18,35,Wheaten Terrier,100,0.9688,0.93,0.949
+resnet18,36,Yorkshire Terrier,100,0.9898,0.97,0.9798

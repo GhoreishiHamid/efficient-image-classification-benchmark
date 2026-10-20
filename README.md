@@ -26,6 +26,25 @@ Both models were trained for **1 epoch**, using the same 2,944-image training sp
 
 Detailed output: [experimental report](results/summary.md) · [CSV results](results/comparison.csv).
 
+<!-- classwise-analysis:start -->
+## Class-wise error analysis
+
+The saved **single-epoch** checkpoints were evaluated again on the **same official test split** to examine class-level errors. This is descriptive analysis, **not an independent experiment or additional training**.
+
+| Model | Test accuracy | Macro F1 | Weighted F1 |
+| :--- | ---: | ---: | ---: |
+| MobileNetV3-Small | 76.75% | 75.94% | 76.02% |
+| ResNet18 | 83.86% | 82.84% | 82.93% |
+
+![Per-class F1 for the two models](results/classwise_f1.png)
+
+[Detailed analysis](results/class_analysis.md) · [Per-class metrics CSV](results/per_class_metrics.csv) · [Confusion matrices](results/confusion_matrices.png)
+
+To reproduce the analysis after training, run `.\.venv\Scripts\python.exe src\analyze_results.py` from the repository root. It does not retrain the models.
+
+**Interpretation:** Macro F1 gives equal weight to every breed; weighted F1 accounts for class support. These test-set observations must not be used to choose new hyperparameters or model variants.
+<!-- classwise-analysis:end -->
+
 ## Dataset and evaluation protocol
 
 - **Dataset:** [Oxford-IIIT Pet](https://www.robots.ox.ac.uk/~vgg/data/pets/), with 37 cat and dog breed categories.
@@ -75,14 +94,20 @@ The training command writes `results/comparison.csv`, `results/model_comparison.
 │   ├── split_data.py       # Reproducible, stratified split
 │   ├── dataloaders.py      # Training/validation transforms and loaders
 │   ├── models.py           # MobileNetV3-Small transfer learning model
-│   └── train.py            # Training, test evaluation, CPU benchmark, reporting
+│   ├── train.py            # Training, test evaluation, CPU benchmark, reporting
+│   └── analyze_results.py # Class-level evaluation of saved checkpoints
 ├── splits/
 │   ├── train_indices.json
 │   └── val_indices.json
 ├── results/
 │   ├── comparison.csv
 │   ├── model_comparison.png
-│   └── summary.md
+│   ├── summary.md
+│   ├── class_analysis.md
+│   ├── classification_metrics.csv
+│   ├── per_class_metrics.csv
+│   ├── classwise_f1.png
+│   └── confusion_matrices.png
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE

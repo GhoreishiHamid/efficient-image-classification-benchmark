@@ -1,0 +1,3 @@
+model,display_name,test_samples,test_accuracy_percent,macro_f1_percent,weighted_f1_percent
+mobilenet_v3_small,MobileNetV3-Small,3669,76.75,75.94,76.02
+resnet18,ResNet18,3669,83.86,82.84,82.93
