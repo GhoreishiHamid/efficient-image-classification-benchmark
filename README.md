@@ -132,3 +132,12 @@ Project source code is released under the [MIT License](LICENSE). The Oxford-III
 
 
 
+## Testing and Reproducibility
+
+The repository includes five automated tests covering dataset split integrity, DataLoader functionality, and benchmark result consistency.
+
+To run the tests:
+
+python -m unittest discover -s tests -v
+
+For further details on the experimental setup, see the [Experiment Protocol](docs/experiment_protocol.md).
