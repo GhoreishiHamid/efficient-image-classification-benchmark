@@ -104,3 +104,6 @@ Potential extensions include repeated-seed experiments, longer training budgets,
 ## License and acknowledgments
 
 Project source code is released under the [MIT License](LICENSE). The Oxford-IIIT Pet dataset and pretrained model weights are third-party resources governed by their own terms and licenses. Their inclusion in the workflow does not place them under this repository's MIT License.
+
+
+
