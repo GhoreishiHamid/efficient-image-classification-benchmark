@@ -130,8 +130,6 @@ Potential extensions include repeated-seed experiments, longer training budgets,
 
 Project source code is released under the [MIT License](LICENSE). The Oxford-IIIT Pet dataset and pretrained model weights are third-party resources governed by their own terms and licenses. Their inclusion in the workflow does not place them under this repository's MIT License.
 
-
-
 ## Testing and Reproducibility
 
 The repository includes five automated tests covering dataset split integrity, DataLoader functionality, and benchmark result consistency.
@@ -140,5 +138,10 @@ To run the tests:
 
 python -m unittest discover -s tests -v
 
-For further details on the experimental setup, see the [Experiment Protocol](docs/experiment_protocol.md).n## Additional Documentationn- [Benchmark interpretation](docs/benchmark_interpretation.md)
+For further details on the experimental setup, see the [Experiment Protocol](docs/experiment_protocol.md).
+
+## Additional Documentation
+
+- [Benchmark interpretation](docs/benchmark_interpretation.md)
 - [Reproducibility checklist](docs/reproducibility_checklist.md)
+
