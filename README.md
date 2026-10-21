@@ -140,4 +140,5 @@ To run the tests:
 
 python -m unittest discover -s tests -v
 
-For further details on the experimental setup, see the [Experiment Protocol](docs/experiment_protocol.md).
+For further details on the experimental setup, see the [Experiment Protocol](docs/experiment_protocol.md).n## Additional Documentationn- [Benchmark interpretation](docs/benchmark_interpretation.md)
+- [Reproducibility checklist](docs/reproducibility_checklist.md)
