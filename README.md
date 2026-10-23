@@ -27,6 +27,7 @@ Both models were trained for **1 epoch**, using the same 2,944-image training sp
 Detailed output: [experimental report](results/summary.md) · [CSV results](results/comparison.csv).
 
 <!-- classwise-analysis:start -->
+
 ## Class-wise error analysis
 
 The saved **single-epoch** checkpoints were evaluated again on the **same official test split** to examine class-level errors. This is descriptive analysis, **not an independent experiment or additional training**.
@@ -145,4 +146,5 @@ For further details on the experimental setup, see the [Experiment Protocol](doc
 - [Benchmark interpretation](docs/benchmark_interpretation.md)
 - [Reproducibility checklist](docs/reproducibility_checklist.md)
 - [Quick results summary](docs/results_summary_guide.md)
+
 
