@@ -1,0 +1,28 @@
+{
+  "dataset": "Oxford-IIIT Pet",
+  "classes": 37,
+  "models": [
+    "mobilenet_v3_small",
+    "resnet18"
+  ],
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "epochs_per_seed": 3,
+  "batch_size": 16,
+  "train_split": "Saved stratified split, 80:20 from official trainval",
+  "checkpoint_selection": "Highest validation accuracy within each run",
+  "test_usage": "Evaluated after within-run validation-based model selection; this test split was also seen in the earlier pilot",
+  "optimizer": "Adam, lr=0.001",
+  "loss": "CrossEntropyLoss",
+  "weights": "ImageNet pretrained; frozen feature extractor; linear head trained",
+  "latency": "CPU; median of 20 forward passes each on 5 fixed test images after 5 warmups per image; preprocessing and I/O excluded",
+  "python": "3.13.14",
+  "torch": "2.14.1+cpu",
+  "torchvision": "0.29.1+cpu",
+  "operating_system": "Windows 11",
+  "cpu": "Intel64 Family 6 Model 142 Stepping 9, GenuineIntel",
+  "cpu_threads": 2
+}

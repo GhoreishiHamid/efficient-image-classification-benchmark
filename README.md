@@ -2,13 +2,35 @@
 
 A reproducible, CPU-based **transfer learning benchmark** comparing MobileNetV3-Small and ResNet18 on the **Oxford-IIIT Pet** image classification dataset. The project examines the trade-off between predictive accuracy, inference latency, and model storage size.
 
-> **Study scope:** This is an **initial, single-epoch experiment**, not a comprehensive model ranking. The reported measurements are specific to the experimental setup and CPU used.
+> **Study scope:** This repository contains an original single-epoch pilot and a follow-up multi-seed CPU benchmark. Results are descriptive, hardware-dependent, and not a general architecture ranking.
 
 ## Research question
 
 How does a lightweight convolutional neural network compare with a larger architecture in terms of classification accuracy, CPU inference time, and model size when both use frozen ImageNet-pretrained feature extractors?
 
-## Results
+<!-- extended-benchmark:start -->
+## Extended multi-seed benchmark (main follow-up)
+
+Both models were trained for **3 epochs per run** with the same train/validation split and **3 pre-specified random seeds** (`42, 123, 2026`). Checkpoints were selected using validation accuracy only; held-out test metrics were computed afterwards. This follow-up is more informative than the original single-epoch pilot, but remains a small CPU-only benchmark.
+
+| Metric | MobileNetV3-Small | ResNet18 |
+|:--|--:|--:|
+| Test accuracy, mean ± SD | 80.83 ± 0.99% | 86.72 ± 0.89% |
+| Macro F1, mean ± SD | 80.55 ± 1.21% | 86.37 ± 0.94% |
+| Validation accuracy, mean ± SD | 84.38 ± 1.21% | 90.26 ± 0.28% |
+| CPU latency (median of run medians) | 13.38 ms | 62.86 ms |
+| Checkpoint size (mean) | 3.75 MiB | 42.78 MiB |
+
+![Extended benchmark comparison](results/extended/benchmark_comparison.png)
+
+![Training and validation learning curves](results/extended/learning_curves.png)
+
+[Extended analysis](results/extended/report.md) · [Per-run CSV](results/extended/per_run_metrics.csv) · [Per-class F1](results/extended/classwise_f1.png) · [Confusion matrices](results/extended/confusion_matrices.png) · [Detailed protocol](docs/extended_benchmark_protocol.md)
+
+**Interpretation:** Test-set differences describe these runs and this hardware. The original single-epoch experiment remains below for comparison; its class-wise figures refer to the earlier checkpoints, not to the new runs. The official test set was already viewed in that pilot, so it is not a fresh, previously unseen holdout for the project as a whole.
+<!-- extended-benchmark:end -->
+
+## Original single-epoch pilot results
 
 Both models were trained for **1 epoch**, using the same 2,944-image training split and 736-image validation split, and evaluated on the separate official **3,669-image test set**.
 

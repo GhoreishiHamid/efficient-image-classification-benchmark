@@ -1,0 +1,7 @@
+model,seed,epochs,batch_size,best_epoch,train_samples,validation_samples,test_samples,best_validation_accuracy_percent,test_accuracy_percent,macro_f1_percent,cpu_latency_ms,checkpoint_size_mib
+mobilenet_v3_small,42,3,16,3,2944,736,3669,83.4239,79.94,79.372,13.3792,3.7469
+mobilenet_v3_small,123,3,16,3,2944,736,3669,83.9674,80.6487,80.4877,15.1316,3.7472
+mobilenet_v3_small,2026,3,16,3,2944,736,3669,85.7337,81.9024,81.7903,11.1418,3.7474
+resnet18,42,3,16,3,2944,736,3669,90.4891,87.7078,87.3095,62.315,42.7829
+resnet18,123,3,16,2,2944,736,3669,89.9457,86.4541,86.3582,96.1228,42.783
+resnet18,2026,3,16,2,2944,736,3669,90.3533,85.9907,85.4389,62.8579,42.7832

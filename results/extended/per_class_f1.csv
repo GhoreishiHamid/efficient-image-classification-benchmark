@@ -1,0 +1,75 @@
+model,class_index,class_name,f1_mean,f1_sd
+mobilenet_v3_small,0,Abyssinian,0.78129,0.0632
+mobilenet_v3_small,1,American Bulldog,0.73674,0.02496
+mobilenet_v3_small,2,American Pit Bull Terrier,0.50618,0.07448
+mobilenet_v3_small,3,Basset Hound,0.81245,0.06317
+mobilenet_v3_small,4,Beagle,0.75473,0.09447
+mobilenet_v3_small,5,Bengal,0.693,0.10806
+mobilenet_v3_small,6,Birman,0.71272,0.02422
+mobilenet_v3_small,7,Bombay,0.83272,0.01827
+mobilenet_v3_small,8,Boxer,0.78347,0.0158
+mobilenet_v3_small,9,British Shorthair,0.66824,0.07768
+mobilenet_v3_small,10,Chihuahua,0.69903,0.00325
+mobilenet_v3_small,11,Egyptian Mau,0.80034,0.07635
+mobilenet_v3_small,12,English Cocker Spaniel,0.81612,0.00811
+mobilenet_v3_small,13,English Setter,0.8359,0.01773
+mobilenet_v3_small,14,German Shorthaired,0.86124,0.05503
+mobilenet_v3_small,15,Great Pyrenees,0.9113,0.01303
+mobilenet_v3_small,16,Havanese,0.85087,0.03063
+mobilenet_v3_small,17,Japanese Chin,0.91282,0.0089
+mobilenet_v3_small,18,Keeshond,0.95628,0.00503
+mobilenet_v3_small,19,Leonberger,0.94833,0.01353
+mobilenet_v3_small,20,Maine Coon,0.69354,0.0157
+mobilenet_v3_small,21,Miniature Pinscher,0.83266,0.02206
+mobilenet_v3_small,22,Newfoundland,0.93026,0.00991
+mobilenet_v3_small,23,Persian,0.76985,0.02125
+mobilenet_v3_small,24,Pomeranian,0.85689,0.02333
+mobilenet_v3_small,25,Pug,0.95839,0.01052
+mobilenet_v3_small,26,Ragdoll,0.63076,0.00713
+mobilenet_v3_small,27,Russian Blue,0.70399,0.06402
+mobilenet_v3_small,28,Saint Bernard,0.85472,0.03006
+mobilenet_v3_small,29,Samoyed,0.87566,0.01712
+mobilenet_v3_small,30,Scottish Terrier,0.91558,0.01129
+mobilenet_v3_small,31,Shiba Inu,0.90799,0.0113
+mobilenet_v3_small,32,Siamese,0.777,0.07817
+mobilenet_v3_small,33,Sphynx,0.86608,0.018
+mobilenet_v3_small,34,Staffordshire Bull Terrier,0.53063,0.04657
+mobilenet_v3_small,35,Wheaten Terrier,0.87188,0.01085
+mobilenet_v3_small,36,Yorkshire Terrier,0.95388,0.01081
+resnet18,0,Abyssinian,0.82942,0.02556
+resnet18,1,American Bulldog,0.76228,0.03071
+resnet18,2,American Pit Bull Terrier,0.5165,0.09737
+resnet18,3,Basset Hound,0.88279,0.07587
+resnet18,4,Beagle,0.87139,0.05509
+resnet18,5,Bengal,0.75119,0.02114
+resnet18,6,Birman,0.62631,0.1556
+resnet18,7,Bombay,0.89343,0.02383
+resnet18,8,Boxer,0.83717,0.02245
+resnet18,9,British Shorthair,0.75962,0.00837
+resnet18,10,Chihuahua,0.88453,0.01167
+resnet18,11,Egyptian Mau,0.83512,0.02536
+resnet18,12,English Cocker Spaniel,0.93524,0.01365
+resnet18,13,English Setter,0.94035,0.01556
+resnet18,14,German Shorthaired,0.94369,0.02424
+resnet18,15,Great Pyrenees,0.94673,0.02451
+resnet18,16,Havanese,0.93124,0.00652
+resnet18,17,Japanese Chin,0.97639,0.01094
+resnet18,18,Keeshond,0.9829,0.00809
+resnet18,19,Leonberger,0.97869,0.012
+resnet18,20,Maine Coon,0.71819,0.09805
+resnet18,21,Miniature Pinscher,0.91401,0.0148
+resnet18,22,Newfoundland,0.98128,0.00791
+resnet18,23,Persian,0.86891,0.00523
+resnet18,24,Pomeranian,0.95754,0.00787
+resnet18,25,Pug,0.98146,0.00287
+resnet18,26,Ragdoll,0.67661,0.0279
+resnet18,27,Russian Blue,0.75361,0.11392
+resnet18,28,Saint Bernard,0.93056,0.03882
+resnet18,29,Samoyed,0.95062,0.02213
+resnet18,30,Scottish Terrier,0.96374,0.01005
+resnet18,31,Shiba Inu,0.94423,0.02018
+resnet18,32,Siamese,0.86764,0.01995
+resnet18,33,Sphynx,0.89262,0.01071
+resnet18,34,Staffordshire Bull Terrier,0.56128,0.02626
+resnet18,35,Wheaten Terrier,0.93641,0.01167
+resnet18,36,Yorkshire Terrier,0.97277,0.01318
