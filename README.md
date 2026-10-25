@@ -76,8 +76,9 @@ To reproduce the analysis after training, run `.\.venv\Scripts\python.exe src\an
 - **Training transforms:** Random resized crop to 224 × 224, random horizontal flip, tensor conversion, and ImageNet normalization.
 - **Validation/test transforms:** Resize to 256, center crop to 224 × 224, tensor conversion, and ImageNet normalization.
 - **Transfer learning:** Initialize both networks using ImageNet-pretrained weights, freeze their existing feature extractors, and train a newly initialized 37-class linear classifier.
-- **Optimization:** Adam (`lr=0.001`), cross-entropy loss, batch size 16, one epoch. Checkpoints are selected by validation accuracy.
-- **Latency:** Median of 30 single-image forward passes on CPU, following 5 warm-up passes. Input preprocessing and disk I/O are excluded. Measurements are hardware-dependent.
+- **Optimization:** Adam (`lr=0.001`), cross-entropy loss, batch size 16, one epoch for the pilot, and three epochs per seed (three seeds) for the extended benchmark. Checkpoints are selected by validation accuracy.
+- **Latency (pilot):** Median of 30 single-image forward passes on CPU, following 5 warm-up passes. Input preprocessing and disk I/O are excluded.
+- **Latency (extended):** Five fixed, preprocessed test images; five warm-up passes and 20 timed single-image forward passes per image, summarized by medians. Measurements exclude preprocessing and are hardware-dependent.
 - **Model size:** On-disk size of each saved PyTorch `state_dict` checkpoint (MiB), rather than the size of the original pretrained download.
 
 ## Run the project
@@ -100,11 +101,14 @@ python -m venv .venv
 # Check the training/validation loaders
 .\.venv\Scripts\python.exe src\dataloaders.py
 
-# Run the experiment on CPU (both models)
+# Reproduce the original single-epoch pilot (both models)
 .\.venv\Scripts\python.exe src\train.py --epochs 1
+
+# Reproduce the extended benchmark (3 epochs, 3 seeds)
+.\.venv\Scripts\python.exe src\final_benchmark.py --epochs 3 --seeds 42 123 2026
 ```
 
-The training command writes `results/comparison.csv`, `results/model_comparison.png`, and `results/summary.md`. It also saves model checkpoints locally under `checkpoints/`. The pretrained model weights and dataset may be downloaded automatically on first use.
+The **pilot** command writes `results/comparison.csv`, `results/model_comparison.png`, and `results/summary.md`. The **extended** command writes its metrics, plots, and report under `results/extended/` and documents the procedure in `docs/extended_benchmark_protocol.md`. Model checkpoints are saved locally under `checkpoints/` (excluded from Git). Pretrained weights and the dataset may download on first use.
 
 **Note:** The benchmark re-runs training and overwrites the generated result files. CPU latency values may differ on another machine or between runs.
 
@@ -113,12 +117,14 @@ The training command writes `results/comparison.csv`, `results/model_comparison.
 ```text
 .
 ├── src/
-│   ├── data.py             # Dataset download and initial inspection
-│   ├── split_data.py       # Reproducible, stratified split
-│   ├── dataloaders.py      # Training/validation transforms and loaders
-│   ├── models.py           # MobileNetV3-Small transfer learning model
-│   ├── train.py            # Training, test evaluation, CPU benchmark, reporting
-│   └── analyze_results.py # Class-level evaluation of saved checkpoints
+│   ├── data.py
+│   ├── split_data.py
+│   ├── dataloaders.py
+│   ├── models.py
+│   ├── train.py
+│   ├── analyze_results.py
+│   ├── results_summary.py
+│   └── final_benchmark.py
 ├── splits/
 │   ├── train_indices.json
 │   └── val_indices.json
@@ -130,7 +136,19 @@ The training command writes `results/comparison.csv`, `results/model_comparison.
 │   ├── classification_metrics.csv
 │   ├── per_class_metrics.csv
 │   ├── classwise_f1.png
-│   └── confusion_matrices.png
+│   ├── confusion_matrices.png
+│   └── extended/                 # Three-seed results, figures and per-run records
+├── tests/
+│   ├── test_project.py
+│   ├── test_results_summary.py
+│   └── test_extended_benchmark.py
+├── docs/
+│   ├── experiment_protocol.md
+│   ├── extended_benchmark_protocol.md
+│   ├── benchmark_interpretation.md
+│   ├── reproducibility_checklist.md
+│   └── results_summary_guide.md
+├── finish_project.ps1
 ├── requirements.txt
 ├── .gitignore
 ├── LICENSE
@@ -141,13 +159,13 @@ The downloaded `data/`, local `.venv/`, and saved `checkpoints/` directories are
 
 ## Limitations and next steps
 
-- **One epoch and one fixed random seed:** More epochs and repeated runs are needed for stronger, more stable conclusions.
+- **Limited experimental scope:** The pilot uses one epoch and one seed; the extended benchmark uses three epochs and three seeds. More seeds and larger training budgets would provide stronger evidence.
 - **Frozen backbones:** This benchmark tests linear-head transfer learning, not full fine-tuning or training from scratch.
 - **CPU-only latency:** The measurements do not establish performance on mobile phones or other edge devices.
-- **Limited timing protocol:** The reported latency excludes preprocessing and uses one example image. An extended benchmark should test more images, repeated sessions, and multiple devices.
+- **Limited timing protocol:** The pilot measures one example input, whereas the extended benchmark uses five preprocessed test images. Neither measures preprocessing or performance across different devices.
 - **Test-set discipline:** Any future experiment variants should be chosen using validation data, rather than repeatedly optimizing choices on the reported test set.
 
-Potential extensions include repeated-seed experiments, longer training budgets, and evaluations on actual resource-constrained devices.
+Potential extensions include additional seeds, longer training budgets, and evaluations on actual resource-constrained devices.
 
 ## License and acknowledgments
 
@@ -155,7 +173,7 @@ Project source code is released under the [MIT License](LICENSE). The Oxford-III
 
 ## Testing and Reproducibility
 
-The repository includes five automated tests covering dataset split integrity, DataLoader functionality, and benchmark result consistency.
+The repository includes eleven automated tests covering dataset split integrity, DataLoader functionality, and benchmark result consistency.
 
 To run the tests:
 
