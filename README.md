@@ -5,10 +5,10 @@ A reproducible, CPU-based **transfer learning benchmark** comparing MobileNetV3-
 > **Study scope:** This repository contains an original single-epoch pilot and a follow-up multi-seed CPU benchmark. Results are descriptive, hardware-dependent, and not a general architecture ranking.
 
 ## Research question
-
 How does a lightweight convolutional neural network compare with a larger architecture in terms of classification accuracy, CPU inference time, and model size when both use frozen ImageNet-pretrained feature extractors?
 
 <!-- extended-benchmark:start -->
+
 ## Extended multi-seed benchmark (main follow-up)
 
 Both models were trained for **3 epochs per run** with the same train/validation split and **3 pre-specified random seeds** (`42, 123, 2026`). Checkpoints were selected using validation accuracy only; held-out test metrics were computed afterwards. This follow-up is more informative than the original single-epoch pilot, but remains a small CPU-only benchmark.
@@ -86,6 +86,7 @@ To reproduce the analysis after training, run `.\.venv\Scripts\python.exe src\an
 The following commands are for **Windows PowerShell**, executed from the repository root. Python 3.13 (64-bit) was used for the recorded experiment.
 
 ```powershell
+
 # Create a local virtual environment
 python -m venv .venv
 
@@ -186,6 +187,3 @@ For further details on the experimental setup, see the [Experiment Protocol](doc
 - [Benchmark interpretation](docs/benchmark_interpretation.md)
 - [Reproducibility checklist](docs/reproducibility_checklist.md)
 - [Quick results summary](docs/results_summary_guide.md)
-
-
-
