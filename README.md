@@ -156,10 +156,15 @@ The **pilot** command writes `results/comparison.csv`, `results/model_comparison
 The downloaded `data/`, local `.venv/`, and saved `checkpoints/` directories are excluded from version control.
 
 ## Limitations and next steps
+
 - **Limited experimental scope:** The pilot uses one epoch and one seed; the extended benchmark uses three epochs and three seeds. More seeds and larger training budgets would provide stronger evidence.
+- 
 - **Frozen backbones:** This benchmark tests linear-head transfer learning, not full fine-tuning or training from scratch.
+- 
 - **CPU-only latency:** The measurements do not establish performance on mobile phones or other edge devices.
+- 
 - **Limited timing protocol:** The pilot measures one example input, whereas the extended benchmark uses five preprocessed test images. Neither measures preprocessing or performance across different devices.
+- 
 - **Test-set discipline:** Any future experiment variants should be chosen using validation data, rather than repeatedly optimizing choices on the reported test set.
 
 Potential extensions include additional seeds, longer training budgets, and evaluations on actual resource-constrained devices.
