@@ -31,7 +31,6 @@ Both models were trained for **3 epochs per run** with the same train/validation
 <!-- extended-benchmark:end -->
 
 ## Original single-epoch pilot results
-
 Both models were trained for **1 epoch**, using the same 2,944-image training split and 736-image validation split, and evaluated on the separate official **3,669-image test set**.
 
 | Metric | MobileNetV3-Small | ResNet18 |
@@ -51,7 +50,6 @@ Detailed output: [experimental report](results/summary.md) · [CSV results](resu
 <!-- classwise-analysis:start -->
 
 ## Class-wise error analysis
-
 The saved **single-epoch** checkpoints were evaluated again on the **same official test split** to examine class-level errors. This is descriptive analysis, **not an independent experiment or additional training**.
 
 | Model | Test accuracy | Macro F1 | Weighted F1 |
@@ -82,7 +80,6 @@ To reproduce the analysis after training, run `.\.venv\Scripts\python.exe src\an
 - **Model size:** On-disk size of each saved PyTorch `state_dict` checkpoint (MiB), rather than the size of the original pretrained download.
 
 ## Run the project
-
 The following commands are for **Windows PowerShell**, executed from the repository root. Python 3.13 (64-bit) was used for the recorded experiment.
 
 ```powershell
@@ -159,7 +156,6 @@ The **pilot** command writes `results/comparison.csv`, `results/model_comparison
 The downloaded `data/`, local `.venv/`, and saved `checkpoints/` directories are excluded from version control.
 
 ## Limitations and next steps
-
 - **Limited experimental scope:** The pilot uses one epoch and one seed; the extended benchmark uses three epochs and three seeds. More seeds and larger training budgets would provide stronger evidence.
 - **Frozen backbones:** This benchmark tests linear-head transfer learning, not full fine-tuning or training from scratch.
 - **CPU-only latency:** The measurements do not establish performance on mobile phones or other edge devices.
@@ -187,3 +183,4 @@ For further details on the experimental setup, see the [Experiment Protocol](doc
 - [Benchmark interpretation](docs/benchmark_interpretation.md)
 - [Reproducibility checklist](docs/reproducibility_checklist.md)
 - [Quick results summary](docs/results_summary_guide.md)
+
