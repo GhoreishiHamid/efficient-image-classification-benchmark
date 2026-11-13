@@ -1,13 +1,11 @@
 # Experiment Protocol and Reproducibility Notes
 
 ## Goal
-
 Compare classification accuracy, CPU inference latency, and checkpoint size for a
 lightweight CNN (MobileNetV3-Small) and a larger CNN (ResNet18). This is a
 **preliminary, single-epoch study**, not a conclusive architecture ranking.
 
 ## Data and splits
-
 - Dataset: Oxford-IIIT Pet, 37 cat and dog breeds.
 - Official `trainval` partition: 3,680 images, split into 2,944 for training
   and 736 for validation using stratified sampling (`random_state=42`).
@@ -20,7 +18,6 @@ lightweight CNN (MobileNetV3-Small) and a larger CNN (ResNet18). This is a
   tensor conversion, and ImageNet normalization.
 
 ## Model training and evaluation
-
 - Initialize both networks using ImageNet-pretrained weights.
 - Freeze pretrained feature extractors and train a new 37-class linear head.
 - Adam optimizer, learning rate 0.001, cross-entropy loss, batch size 16.
@@ -30,7 +27,6 @@ lightweight CNN (MobileNetV3-Small) and a larger CNN (ResNet18). This is a
   error analysis**; they should not be used for further tuning choices.
 
 ## CPU benchmark protocol
-
 - Single preprocessed image, model forward pass only.
 - Five warm-up passes, followed by 30 timed forward passes.
 - Reported latency: median per-image milliseconds; preprocessing and disk
@@ -52,7 +48,6 @@ results, and DataLoader output shapes. They do not verify model accuracy
 or replace repeated experiments.
 
 ## Limitations and meaningful extensions
-
 One epoch and one fixed seed are insufficient for strong performance
 conclusions. For a more rigorous study, run several seeds, compare longer
 training budgets using validation-based selection, report uncertainty,
