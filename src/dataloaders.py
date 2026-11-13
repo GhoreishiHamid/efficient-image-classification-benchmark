@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-
 from torch.utils.data import DataLoader, Subset
 from torchvision import transforms
 from torchvision.datasets import OxfordIIITPet
@@ -14,7 +13,6 @@ SPLITS_DIR = PROJECT_ROOT / "splits"
 # ImageNet normalization values
 MEAN = [0.485, 0.456, 0.406]
 STD = [0.229, 0.224, 0.225]
-
 
 def get_data_loaders(batch_size=16):
     # Transformations for training images
@@ -81,7 +79,6 @@ def get_data_loaders(batch_size=16):
 
     return train_loader, val_loader
 
-
 def main():
     train_loader, val_loader = get_data_loaders()
 
@@ -98,5 +95,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
     
