@@ -1,13 +1,11 @@
-from pathlib import Path
 
+from pathlib import Path
 from torchvision.datasets import OxfordIIITPet
 from torchvision import transforms
-
 
 # Define the dataset directory
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
-
 
 def main():
     # Prepare images for classification models
@@ -43,7 +41,6 @@ def main():
     image, label = trainval_dataset[0]
     print("Sample image shape:", tuple(image.shape))
     print("Sample class:", trainval_dataset.classes[label])
-
 
 if __name__ == "__main__":
     main()
