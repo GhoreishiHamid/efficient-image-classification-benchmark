@@ -174,14 +174,18 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
+
 # Pyre type checker
 .pyre/
+
 
 # pytype static type analyzer
 .pytype/
 
+
 # Cython debug symbols
 cython_debug/
+
 
 # PyCharm
 #   JetBrains specific template is maintained in a separate JetBrains.gitignore that can
@@ -190,11 +194,13 @@ cython_debug/
 #   option (not recommended) you can uncomment the following to ignore the entire idea folder.
 # .idea/
 
+
 # Abstra
 #   Abstra is an AI-powered process automation framework.
 #   Ignore directories containing user credentials, local state, and settings.
 #   Learn more at https://abstra.io/docs
 .abstra/
+
 
 # Visual Studio Code
 #   Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore that
@@ -204,6 +210,8 @@ cython_debug/
 # .vscode/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
+
+
 
 # Ruff stuff:
 .ruff_cache/
@@ -220,7 +228,6 @@ __marimo__/
 .streamlit/secrets.toml
 
 /data/
-
 
 /checkpoints/
 
