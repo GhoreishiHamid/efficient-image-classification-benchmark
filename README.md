@@ -1,16 +1,15 @@
 # Efficient Image Classification: Accuracy vs. Inference Speed
-
 A reproducible, CPU-based **transfer learning benchmark** comparing MobileNetV3-Small and ResNet18 on the **Oxford-IIIT Pet** image classification dataset. The project examines the trade-off between predictive accuracy, inference latency, and model storage size.
 
 > **Study scope:** This repository contains an original single-epoch pilot and a follow-up multi-seed CPU benchmark. Results are descriptive, hardware-dependent, and not a general architecture ranking.
 
 ## Research question
+
 How does a lightweight convolutional neural network compare with a larger architecture in terms of classification accuracy, CPU inference time, and model size when both use frozen ImageNet-pretrained feature extractors?
 
 <!-- extended-benchmark:start -->
 
 ## Extended multi-seed benchmark (main follow-up)
-
 Both models were trained for **3 epochs per run** with the same train/validation split and **3 pre-specified random seeds** (`42, 123, 2026`). Checkpoints were selected using validation accuracy only; held-out test metrics were computed afterwards. This follow-up is more informative than the original single-epoch pilot, but remains a small CPU-only benchmark.
 
 | Metric | MobileNetV3-Small | ResNet18 |
@@ -67,7 +66,6 @@ To reproduce the analysis after training, run `.\.venv\Scripts\python.exe src\an
 <!-- classwise-analysis:end -->
 
 ## Dataset and evaluation protocol
-
 - **Dataset:** [Oxford-IIIT Pet](https://www.robots.ox.ac.uk/~vgg/data/pets/), with 37 cat and dog breed categories.
 - **Train/validation:** 3,680 images from the official `trainval` partition, split into 2,944 training and 736 validation images using stratified sampling (`random_state=42`). The split indices are saved in `splits/`.
 - **Test:** The separate official partition of 3,669 images. It is not used for training or choosing the best checkpoint.
@@ -156,7 +154,6 @@ The **pilot** command writes `results/comparison.csv`, `results/model_comparison
 The downloaded `data/`, local `.venv/`, and saved `checkpoints/` directories are excluded from version control.
 
 ## Limitations and next steps
-
 - **Limited experimental scope:** The pilot uses one epoch and one seed; the extended benchmark uses three epochs and three seeds. More seeds and larger training budgets would provide stronger evidence.
 - 
 - **Frozen backbones:** This benchmark tests linear-head transfer learning, not full fine-tuning or training from scratch.
@@ -170,11 +167,9 @@ The downloaded `data/`, local `.venv/`, and saved `checkpoints/` directories are
 Potential extensions include additional seeds, longer training budgets, and evaluations on actual resource-constrained devices.
 
 ## License and acknowledgments
-
 Project source code is released under the [MIT License](LICENSE). The Oxford-IIIT Pet dataset and pretrained model weights are third-party resources governed by their own terms and licenses. Their inclusion in the workflow does not place them under this repository's MIT License.
 
 ## Testing and Reproducibility
-
 The repository includes eleven automated tests covering dataset split integrity, DataLoader functionality, and benchmark result consistency.
 
 To run the tests:
@@ -184,7 +179,6 @@ python -m unittest discover -s tests -v
 For further details on the experimental setup, see the [Experiment Protocol](docs/experiment_protocol.md).
 
 ## Additional Documentation
-
 - [Benchmark interpretation](docs/benchmark_interpretation.md)
 - [Reproducibility checklist](docs/reproducibility_checklist.md)
 - [Quick results summary](docs/results_summary_guide.md)
